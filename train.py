@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 
 import model
+import model_affine
 
 FILE_PATH = "PATH TO FILE"
 MODEL_PATH = "PATH TO save"
@@ -35,8 +36,9 @@ trainloader = torch.utils.data.DataLoader(traindataset, batch_size=batch_size, s
 num_datasets = len(trainloader)
 print("num of dataset:" + str(num_datasets))
 
-net = model.SimpleCNN(3, num_classes)
-optimizer = torch.optim.Adam(net.parameters(), lr=1e-6)
+#net = model.SimpleCNN(3, num_classes)
+net = model_affine.SimpleAffine(3, num_classes)
+optimizer = torch.optim.Adam(net.parameters(), lr=1e-4)
 
 loss_func = nn.CrossEntropyLoss()
 
